@@ -3,7 +3,9 @@ Software-Architektur
 
 ENGLISH: This "project" is nothing more than a document I created to save a wealth of information regarding software architecture. It is entirely German, therefore the rest of this description will be German, too. If you feel like there's a need for an English edition - just fork!
 
-In diesem Dokument sammle ich alle mir relevant erscheinenden Punkte zum Thema Software-Architektur. Es ist weder vollständig noch übermäßig gut sortiert aber inzwischen hat sich einiges gesammelt.
+In diesem Dokument sammle ich alle mir relevant erscheinenden Punkte zum Thema Software-Architektur. Es ist weder vollständig noch übermäßig gut sortiert aber inzwischen hat sich einiges gesammelt. Es ist als [Github-Page](http://pages.github.com/) angelegt und hier zu finden:
+
+http://janpetzold.github.io/software-architektur/
 
 Ich habe das Dokument im Zuge der Vorbereitung meiner Prüfung zum [Certified Professional for Software Architecture](http://www.isaqb.org/index.php?option=com_content&view=category&layout=blog&id=11&Itemid=8&lang=de) erstellt.
 

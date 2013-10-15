@@ -32,3 +32,4 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * [Basiswissen für Softwarearchitekten](http://www.amazon.com/Basiswissen-Softwarearchitekten-Weiterbildung-iSAQB-Standard-ebook) von Gharbi/Koschel/Rausch/Starke
 * [Effektive Softwarearchitekturen](http://www.amazon.com/Effektive-Softwarearchitekturen-Gernot-Starke/dp/3446427287) von Gernot Starke
 * [Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683) von Joshua Bloch
+* [Quasar 3](http://web.de.capgemini.com/doc/Quasar3/Quasar3_external_V1.1paper.pdf) von Engels/Kremer/Nötzold/Wolf/Prott/Hohwiller/Hofmann/Seidl/Schlegel/Nandico

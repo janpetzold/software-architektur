@@ -24,16 +24,16 @@ Das Dokument besteht ausschließlich aus Stichpunkten die in bestimmten Themenko
 
 Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 
-<<<<<<< HEAD
-- Design Patterns von Gamm/Helm/Johnson/Vlissides
-- POSA 4 von Buschmann/Henney/Schmidt
-- Patterns of Enterprise Application Architecture von Martin Fowler
-- Basiswissen für Softwarearchitekten von Gharbi/Koschel/Rausch/Starke
-- Effektive Softwarearchitekturen von Gernot Starke
-- Effective Java von Joshua Bloch
-- Quasar 3 von Engels/Kremer/Nötzold/Wolf/Prott/Hohwiller/Hofmann/Seidl/Schlegel/Nandico
-- Software Estimation: Demystifying the black art von Steve McConnell
-- Release It! von Michael T. Nygard
+* [Design Patterns](www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612) von Gamm/Helm/Johnson/Vlissides
+* [POSA 4](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Distributed-Computing/dp/0470059028) von Buschmann/Henney/Schmidt
+* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420) von Martin Fowler
+* [Basiswissen für Softwarearchitekten](http://www.amazon.com/Basiswissen-Softwarearchitekten-Weiterbildung-iSAQB-Standard-ebook) von Gharbi/Koschel/Rausch/Starke
+* [Effektive Softwarearchitekturen](http://www.amazon.com/Effektive-Softwarearchitekturen-Gernot-Starke/dp/3446427287) von Gernot Starke
+* [Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683) von Joshua Bloch
+* [Quasar 3](http://web.de.capgemini.com/doc/Quasar3/Quasar3_external_V1.1paper.pdf) von Engels/Kremer/Nötzold/Wolf/Prott/Hohwiller/Hofmann/Seidl/Schlegel/Nandico
+* [Software Estimation: Demystifying the black art](https://www.microsoft.com/learning/en-us/book.aspx?id=2425) von Steve McConnell
+* [Release It!](https://pragprog.com/book/mnee/release-it) von Michael T. Nygard
+
 
 ## Definition & Aufgaben von SW-Architekten
 
@@ -2349,13 +2349,3 @@ public Cargo(TrackingId trackingId, RouteSpecification routeSpecification) {
 *   Schicht 5 (Session – z.B. HTTP): Dialogkontrolle, Synchronisation, Beispiel: HTTP
 *   Schicht 6 (Presentation – z.B. HTTP): Struktur und Semantik
 *   Schicht 7 (Application – z.B. HTTP): Sonstige Protokolle zur Verfügung stellen
-=======
-* [Design Patterns](www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612) von Gamm/Helm/Johnson/Vlissides
-* [POSA 4](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Distributed-Computing/dp/0470059028) von Buschmann/Henney/Schmidt
-* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420) von Martin Fowler
-* [Basiswissen für Softwarearchitekten](http://www.amazon.com/Basiswissen-Softwarearchitekten-Weiterbildung-iSAQB-Standard-ebook) von Gharbi/Koschel/Rausch/Starke
-* [Effektive Softwarearchitekturen](http://www.amazon.com/Effektive-Softwarearchitekturen-Gernot-Starke/dp/3446427287) von Gernot Starke
-* [Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683) von Joshua Bloch
-* [Quasar 3](http://web.de.capgemini.com/doc/Quasar3/Quasar3_external_V1.1paper.pdf) von Engels/Kremer/Nötzold/Wolf/Prott/Hohwiller/Hofmann/Seidl/Schlegel/Nandico
-* [Software Estimation: Demystifying the black art](https://www.microsoft.com/learning/en-us/book.aspx?id=2425) von Steve McConnell
->>>>>>> origin/master

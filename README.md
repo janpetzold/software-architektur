@@ -2,11 +2,11 @@ ENGLISH: This "project" is nothing more than a document I created to save a weal
 
 # Eine (absolut subjektive) Zusammenstellung relevanter Aspekte der Software-Architektur
 
-#### Erste Version vom 04.10.2012, letztes Update am 17.12.2015
+#### Erste Version vom 04.10.2012, letztes Update am 14.08.2016
 
 In diesem Dokument sammle ich alle mir relevant erscheinenden Punkte zum Thema Software-Architektur. Es ist weder vollständig noch übermäßig gut sortiert aber inzwischen hat sich einiges gesammelt. 
 
-Ich habe das Dokument im Zuge der Vorbereitung meiner Prüfung zum Certified Professional for Software Architecture erstellt.
+Ich habe das Dokument im Zuge der Vorbereitung meiner Prüfung zum Certified Professional for Software Architecture erstellt und seitdem unregelmäßig erweitert.
 
 Das Dokument besteht ausschließlich aus Stichpunkten die in bestimmten Themenkomplexen zusammengefaßt werden. Folgende Themen werden behandelt:
 
@@ -14,7 +14,7 @@ Das Dokument besteht ausschließlich aus Stichpunkten die in bestimmten Themenko
 - Vorgehen im Entwurf von Software-Architekturen
 - Qualitätsmerkmale
 - Konstruktion (Schnittstellen, Bausteine/Komponenten)
-- Domänenzentrierte Entwicklung
+- Domain-driven Design (domänenzentrierte Entwicklung)
 - Design Patterns
 - Architektur-Patterns
 - Dokumentation von Architekturen
@@ -33,6 +33,7 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * [Quasar 3](http://web.de.capgemini.com/doc/Quasar3/Quasar3_external_V1.1paper.pdf) von Engels/Kremer/Nötzold/Wolf/Prott/Hohwiller/Hofmann/Seidl/Schlegel/Nandico
 * [Software Estimation: Demystifying the black art](https://www.microsoft.com/learning/en-us/book.aspx?id=2425) von Steve McConnell
 * [Release It!](https://pragprog.com/book/mnee/release-it) von Michael T. Nygard
+* [Implementing Domain-Driven Design](https://vaughnvernon.co/?page_id=168) von Vaugh Vernon
 
 
 ## Definition & Aufgaben von SW-Architekten
@@ -127,6 +128,7 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   bei Großprojekten (mehr als 20 Entwickler) bzw. verteilten Systemen sollte nicht eine Person alle A.-Entscheidungen treffen (auch technologieabhängig), generell ist jedes Teammitglied natürlich auch für die A. zuständig
 *   gute SW-Architekten arbeiten proaktiv, holen Feedback ein statt zu vermuten, arbeiten nicht im Elfenbeinturm und optimieren nur bei Notwendigkeit
 *   Lösungen meist nur durch enge Abstimmung mit PL/Management, Zwischenlösungen (Features weglassen), Revision, Einkauf von Komponenten, Anforderungen überarbeiten
+*   Projekte scheitern praktisch nie wegen dem Code sondern meist an ungenügender Klärung der Anforderungen und fehlender Interaktion mit Kunden/Stakeholdern/Anwendern
 *   Interessanter Ansatz von Amazon: "Working from the customer backwards", d.h. mit Pressemitteilung beginnen und das einfachste mögliche Design entwickeln
 *   Architekten lernen u.a. durch…
 	*   Nachbarprojekte
@@ -614,35 +616,12 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   Performanceverbesserung durch Parallelisierung, entweder logisch (parallele Jobs bzw. parallele Teilschritte) oder physisch (Threads/CPUs)
 *   ansonsten möglichst große Blöcke verwenden, wenige DB-Zugriffe, Caches nutzen
 
-## Domänenzentrierte Entwicklung
+## Domain-driven Design (domänenzentrierte Entwicklung)
 
 *   Sammlung von Prinzipien & Mustern die Entwicklern beim Entwurf von Objektsystemen helfen sollen
 *   komplexe Projekte können kaum ganzheitlich betrachtet werden (vgl. Automobilbau/jeder hat Teilaufgabe des großen Ganzen)
-*   Ausgangspunkt: Domäne bzw. Fachlichkeit, die ein Spezialist am besten beurteilen kann – Domänenlogik steht im Mittelpunkt der Anwendung, Modell bildet Domänenlogik ab
-*   Strukturierung der Fachdomäne nach…
-	*   Fachobjekten: komplexe Fachlogik, objektorientiert, Wiederverwendbarkeit wichtig
-	*   Benutzertransaktionen: Datenbeschaffung und Operationen, Fremdsysteme, überschaubare Fachlogik
-*   Domänenmodell ist rein fachlich und hilft auch bei Formulierung von Anforderungen
-*   **Entities**: Kernobjekte, meist persistent und mit eindeutiger Identität und klarem Lebenszyklus (Objekt wie z.B. Person, Ort, …), haben Operationen und Eigenschaften sowie Beziehungen
-*   **Value Objects**: beschreiben Zustand anderer Objekte, keine eigene Identität, (möglichst) unveränderlich, sind quasi Attribute von Entities, können Operationen und Beziehungen haben
-*   **Services:** Eine Art Verbindungspunkt von Objekten, bauen auf Entities & Value Objects auf
-*   unabhängige Einheit die spezifische Funktionalität liefert, oft 1 Team = 1 Service
-*   inhaltlich zusammenhängende Operationen die Abläufe/Prozesse der Domäne darstellen und über Interfaces angeboten werden, meist ohne eigenen Zustand
-*   ein Service unterstützt ein klar umrissenes Ziel, wird immer in einer bestimmten Rolle (Nutzer) ausgeführt und besteht aus einer oder mehreren Aktivitäten
-*   auch Services sollten sauber versioniert sein (z.B. Version als Teil der URL), das erleichtert Migrationen ungemein
-*   verschiedene Arten von Services:
-    *   Interaktion: meist mit Benutzer aber evtl. auch mit anderem System
-    *   Prozess: Service ruft weitere Services auf
-    *   Funktional: Service implementiert einen bestimmten Algorithmus
-    *   Datenorientiert: CRUD-Operationen mit Daten
-*   Software muss die Domäne modellieren, das macht sie flexibler und leichter erweiterbar
 *   Domäne organisiert und systematisiert Informationen (Geschäftsanforderungen), unterteilt sie und gruppiert diese in logische Module
-*   Methoden können klassisch (Wasserfall, durchdefiniert) oder agil (Scrum, iterativ) sein
-*   Beispiel Domänenmodell: Flugsteuerung – Bestandteile:
-	*   Flugzeug
-	*   Route
-	*   Abflug
-	*   Ankunft
+*   Beispiel Domänenmodell einer Flugsteuerung: Flugzeug, Route, Abflug, Ankunft
 *   diese zunächst verstehen und dann in ein Verhältnis setzen, dabei immer abstrahieren
 *   eine einheitliche, übergreifende Sprache ("ubiquitous language") die Technik und Fachlichkeit verbindet ist wichtig und findet sich später auch in Code und Dokumentation wieder
 *   dabei muß der Informationsfluß definiert und klar erkennbar sein (Informationsobjekte schaffen, die den Zustand von Geschäftsobjekten beschreiben - bildet Grundlage der Kommunikation zwischen Geschäft und IT)
@@ -650,11 +629,41 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   Domänenmodell z.B. durch **CRC Cards** (Class-Responsibility-Collaboration) ermitteln: eine Karteikarte für jede Klasse mit deren Eigenschaften (oben der Name, links die Verantwortlichkeiten, rechts die Relation zu anderen Klassen)
 *   Domänenmodell und Code sollten gemeinsam (objektorientiert) entwickelt werden
 *   Schichtenmodell (**Layers**) sinnvoll, weil man zum Verständnis einer Schicht kein Verständnis der anderen haben muß / jede Schicht bietet Services an, die über Interfaces erreichbar sind
+*   Ausgangspunkt: Domäne bzw. Fachlichkeit, die ein Spezialist am besten beurteilen kann – Domänenlogik steht im Mittelpunkt der Anwendung, Modell bildet Domänenlogik ab
+*   Strukturierung der Fachdomäne nach…
+	*   Fachobjekten: komplexe Fachlogik, objektorientiert, Wiederverwendbarkeit wichtig
+	*   Benutzertransaktionen: Datenbeschaffung und Operationen, Fremdsysteme, überschaubare Fachlogik
+*   Domänenmodell ist rein fachlich und hilft auch bei Formulierung von Anforderungen
+*   Grundidee in Bezug auf Programmierung: wir machen keine reinen POJOs mit Gettern und Settern und basteln alles drumherum sondern codieren den fachlichen Kontext in die Anwendung
+*   sehr rudimentäres Beispiel: Lautstärkeänderung nicht `audio.setVolume()` sondern `speaker.adjustVolume()` oder bei Warensystem nicht einfach `add()` sondern konkret `addFreightToCargoForShip()`
+*   Services/Repositories nicht wild mischen - Beispiel: ein `Cargo`-Service sollte kein User-Objekt referenzieren oder über Repository laden, stattdessen sollte es eine zentrale Stelle geben die das macht, dasselbe gilt für Rechte
+*   **Entities**: Kernobjekte, meist persistent und mit eindeutiger Identität und klarem Lebenszyklus (Objekt wie z.B. Person, Ort, …), haben Operationen und Eigenschaften sowie Beziehungen
+*   Entities sind immer veränderbar ohne ihre Identität zu verlieren
+*   die Identität kann ein Value Object sein (also nicht `Long` `id` sondern eigener Typ `CargoItemId`)
+*   wesentlicher Unterschied zu Value Objects: eindeutige Identität, historische Protokollierung nötig (es ist nicht möglich ein Objekt durch ein anderes zu ersetzen ohne Wert/Informationen zu verlieren)
+*   Identität oft über UUID (besteht aus Zeit, IP, Objektreferenz in VM, Zufallszahl) 
+*   **Value Objects**: beschreiben Zustand anderer Objekte, keine eigene Identität, sind quasi Attribute von Entities, können Operationen und Beziehungen haben
+*   Value Objects sind unveränderlich (werden nur erstellt oder gelöscht, einfach ersetzbar), vgl. funktionale Programmierung (dort Standard)
+*   Value Objects sind einfach, daher gegenüber Entities zu bevorzugen (v.a. Erstellung, Test, Pflege einfacher), keine Seiteneffekte, weitgehend zustandslos
+*   es sollte immer überlegt werden ob ein Objekt wirklich veränderlich sein muss (Entity)
+*   **Services:** Eine Art Verbindungspunkt von Objekten, bauen auf Entities & Value Objects auf
+*   unabhängige Einheit die spezifische Funktionalität liefert, oft 1 Team = 1 Service
+*   inhaltlich zusammenhängende Operationen die Abläufe/Prozesse der Domäne darstellen und über Interfaces angeboten werden, meist ohne eigenen Zustand
+*   ein Service unterstützt ein klar umrissenes Ziel, wird immer in einer bestimmten Rolle (Nutzer) ausgeführt und besteht aus einer oder mehreren Aktivitäten
+*   auch Services sollten sauber versioniert sein (z.B. Version als Teil der URL), erleichtert Migrationen
+*   verschiedene Arten von Services:
+    *   Interaktion: meist mit Benutzer aber evtl. auch mit anderem System
+    *   Prozess: Service ruft weitere Services auf
+    *   Funktional: Service implementiert einen bestimmten Algorithmus
+    *   Datenorientiert: CRUD-Operationen mit Daten
+*   Software muss die Domäne modellieren, das macht sie flexibler und leichter erweiterbar
 *   Beispiel Überweisungsvorgang: soll dies eine Funktion des Senders oder des Empfängers sein? Beides ist nicht ganz sauber!
 *   Lösung: Service, der Funktionalitäten für Domänenobjekte bietet und möglichst zustandslos ist
 *   Beispiel 2: Reportgenerator, benötigt Daten aus DB und ein Template zur Darstellung
 *   Service würde passendes Template zum Report holen und Ergebnis an UI übergeben, aber weder das Report- noch das Template-Objekt wäre der richtige Platz für die Funktion
+*   Service sollte genutzt werden wenn er einen signifikanten Geschäftsprozess umsetzt, Domänenobjekte transformiert oder bei Werteberechnung basierend auf mehr als einem Domänenobjekt (anderes kann u.U. auch direkt in den einzelnen Objekten umgesetzt werden)
 *   **Module** kapseln zusammengehörige E., V.O. und S., sind möglichst lose gekoppelt
+*   entsprechen in Java weitgehend eigenen Packages (Beispiel: `com.carrier.transport.domain.model.shipping.cargo`, `com.carrier.transport.domain.model.shipping.freight`, `com.carrier.transport.domain.model.shipping.ship`)
 *   Zwei Arten von Zusammenhängen:
 	*   Kommunikativ: Verschiedene Teile des Moduls arbeiten mit denselben Daten
 	*   Funktional: Verschiedene Teile des Moduls lösen ein definiertes Problem
@@ -665,16 +674,40 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 	*   Separate ways: Wenn das alles nicht funktioniert werden zwei Modelle oder gleich zwei Anwendungen implementiert, es bleibt auch noch die Kommunikation via Netzwerk/Protokoll oder eine gemeinsame DB (Notlösung, da keine Semantik)
 *   Beispiel: Datenbankschema könnte sich jederzeit ändern, für Shopping-Applikation kein Problem, für Reporting aber schon
 *   Verwaltung der Domänenobjekte über Aggregate, Factories oder Repositories
-*   **Aggregierung:** Modelle enthalten meist mehrere Domänenobjekte, die voneinander abhängen
+*   **Aggregates:** Modelle enthalten meist mehrere Domänenobjekte, die voneinander abhängen
 *   gruppieren assoziierte Objekte in einer Einheit (zentrales Root-Objekt und Unterobjekte)
 *   von außen kann nur das Root-Objekt referenziert werden, dies vermeidet Datenvariationen
 *   Unterobjekte können vom Root-Objekt übergeben werden, müssen aber nach der Operation verworfen werden
 *   Zwei Arten:
 	*   One-to-many: kann teilweise durch Assoziation eines Objektes und einer Sammlung anderer Objekte umgesetzt werden
 	*   Many-to-many: schwieriger da teilweise bidirektional, wichtig ist die Unterscheidung Domäne/Modell
-*   es sollten so viele Assoziationen wie möglich entfernt und bidirektionale Abhängigkeiten in unidirektionale gewandelt werden
+*   es sollten so viele Assoziationen wie möglich entfernt und bidirektionale Abhängigkeiten in unidirektionale gewandelt werden, Aggregates immer eher klein halten (Performance, Skalierbarkeit, einfachere Transaktionen)
 *   Teilweise sind Assoziationen in Fachlichkeit gesetzt, im Modell nicht nötig (Huhn & Ei)
+*   oft müssen Entitites und VOs nicht als Objekt sondern nur über ihre ID referenziert werden
 *   Aggregates gut zum zusammenfassen von Entities und Value Objects, eine Entity sollte die Grundlage des Root-Objektes bilden
+*   **Domain Events:** alle Eriegnisse die für die Domäne relevant sind, können/sollten protokolliert werden, Interessenten sollten informiert werden (Publish/Subscribe)
+*   Beispiel: Methode `Ship.addFreightToCargoForShip()` wirft dann Event `FreightAddedToShip`
+*   Event sollte auch relevante Attribute enthalten (im Beispiel etwa Cargo-ID, Ship-ID, Freight, Zeitpunkt)
+*   Events sind immer unveränderlich (immutable) 
+*   **Refactoring:** Verbesserung des Codes ohne Änderung des Verhaltens
+*   Voraussetzung sind (möglichst automatisierte) Tests, bilden Grundlage Continuous Integration
+*   Hilfreich sind auch explizite Constraints (Ausdruck einer Abweichung, auf die geprüft wird)
+*   Prozesse werden am besten in einem Service umgesetzt, in dem einem Objekt ein bestimmtes Verhalten hinzugefügt wird
+*   Spezifikation testet Objekt nach bestimmten Kriterien, sollte auch in eigenem Objekt mit mehreren Methoden erfolgen
+*   **Anticorruption:** Gut für Legacy-/ Blackbox-Anwendungen, es wird eine Übersetzungs-Schicht (Facade) implementiert, die Modell und Legacy-Anwendung verbindet
+*   **Bounded Context:** führt alles zusammen, ein Modell hat einen Kontext, bei mehreren Modellen muß für jedes ein Kontext definiert werden (logischer Rahmen für das Modell, ubiquitous language gilt innerhalb eines Bounded Context, sammelt mehrere Module/Agrregationen/Events und Services)
+*   Beispiel: eCommerce, unterscheidet zwischen Kaufvorgang und Reporting, beides hat dieselbe DB, Modelle sollten getrennt sein und getrennt "wachsen"
+*   Unterschiedliche Aspekte für Warenkorb egal (Bsp.: Produkt wird wieder entfernt), für Reporting aber nicht
+*   bei neuen Projekten sollte Bounded Context einer Teildomäne (Subdomain)entsprechen (damit auch ein Projekt in Eclipse/IntelliJ oder ein Top-Level-Package/JAR), klappt nicht immer
+*   es kann in mehreren Bounded Contexts gleichnamige Objekte mit verschiedenen Bedeutungen/Funktionen geben (Beispiel: Account)
+*   DB-Schema innerhalb des Bounded Context zu sehen
+*   ein Team sollte immer an einem Bounded Context arbeiten
+*   im Diagramm werden Subdomains mit durchgezogenen Linien und Bounded Context mit gestrichelten dargestellt
+*   in Legacy-Systemen sind Subdomains und Bounded Context häufig vermischt ("big ball of mud"), idealerweise sind sie in etwa gleich, aber selten möglich
+*   **Context Map:** Dokument, dass die Bounded Contexts zusammenfaßt und abgrenzt
+*   **Distillation:** Aufteilung zwischen generischen und speziellen Konzepten (generische Methoden sollten immer in eigenen Module stehen)
+*   Kern des Domänenmodells variiert je nach Blickwinkel, sollte kompakt gehalten sein
+*   Generische Unterdomänen können mit Fremdbibliotheken, Outsourcing, bestehenden Lösungen (Vererbung) und durch Eigenentwicklung (maximaler Aufwand und Kontrolle) realisiert werden
 *   Mögliche Vorgehensweise für ein Domänenmodell:
 	1.  (Grobes) Domänenmodell skizzieren
 	2.  Entities und Value Objects bestimmen
@@ -682,19 +715,6 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 	4.  Aggregate festlegen
 	5.  Repositories definieren
 	6.  Objekte erzeugen
-*   **Refactoring:** Verbesserung des Codes ohne Änderung des Verhaltens
-*   Voraussetzung sind (möglichst automatisierte) Tests, bilden Grundlage Continuous Integration
-*   Hilfreich sind auch explizite Constraints (Ausdruck einer Abweichung, auf die geprüft wird)
-*   Prozesse werden am besten in einem Service umgesetzt, in dem einem Objekt ein bestimmtes Verhalten hinzugefügt wird
-*   Spezifikation testet Objekt nach bestimmten Kriterien, sollte auch in eigenem Objekt mit mehreren Methoden erfolgen
-*   **Anticorruption:** Gut für Legacy-/ Blackbox-Anwendungen, es wird eine Übersetzungs-Schicht (Facade) implementiert, die Modell und Legacy-Anwendung verbindet
-*   **Bounded Context:** ein Modell hat einen Kontext, bei mehreren Modellen muß für jedes ein Kontext definiert werden (logischer Rahmen für das Modell)
-*   Beispiel: eCommerce, unterscheidet zwischen Kaufvorgang und Reporting, beides hat dieselbe DB, Modelle sollten getrennt sein und getrennt "wachsen"
-*   Unterschiedliche Aspekte für Warenkorb egal, ob Produkt wieder entfernt wird, für Reporting aber nicht
-*   **Context Map:** Dokument, dass die Bounded Contexts zusammenfaßt und abgrenzt
-*   **Distillation:** Aufteilung zwischen generischen und speziellen Konzepten (generische Methoden sollten immer in eigenen Module stehen)
-*   Kern des Domänenmodells variiert je nach Blickwinkel, sollte kompakt gehalten sein
-*   Generische Unterdomänen können mit Fremdbibliotheken, Outsourcing, bestehenden Lösungen (Vererbung) und durch Eigenentwicklung (maximaler Aufwand und Kontrolle) realisiert werden
 
 ## Grundlegende (Design-) Patterns
 *   Wiederverwendung von Erfahrungswerten
@@ -920,6 +940,20 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 	*   Nutzer wählt Flug in UI
 	*   Anwendungsschicht holt relevante Domain-Objekte und ruft sie auf
 	*   nach Validierung und Bestätigung wird in DB persistiert
+*	**Hexagonal (Ports & Adapters bzw. Onion):** entkoppelt Domänenschicht von Persistenz, gut geeignet für verschiedene Konsumenten (z.B. Web-UI, App, Maschinensysteme), Domänenschicht ist von allem unabhängig egal was an DB bzw. UI dazukommt, flexibel hinsichtlich Erweiterung
+*	alle Anfragen landen an einem dafür bestimmten "Port" (Endpunkt, meist API)
+*	Adapter konvertieren die Anfragen der externen Akteure in ein unabhängiges Format so das Anwendungslogik und Akteur unabhängig bleiben
+*	Entkopplung zwingend nötig da sonst z.B. bei einer Änderung eines Objekts (`Cargo`) alle Clients angepasst werden müssten - wenn dis direkt im Remote-Interface (API) aktiv ist gibt es direkt Fehler 
+*	erfordert so gut wie immer einen Data Mapper zwecks Entkopplung zur DB (dies ist aber eh meist Standard)
+*	erleichtert Testbarkeit (isoliert in allen Ebenen)
+*	Ports werden nicht oft selbst entwickelt, Gleichnis - Port entspricht HTTP (=Messaging), Adapter ist das Java-Servlet bzw. der Controller
+
+![Alistair Cockburn Hexagonal Architecture](http://alistair.cockburn.us/get/2302)
+
+*	**CQRS**: Command-Query Responsibility Segregation, eine Kommando kann entweder ein `Query` sein der etwas ausliest oder ein `Command` welches einen Zustand ändert aber keinen Return-Wert hat. Mischformen (z.B. Lesen & Ändern) sind nicht erlaubt ("asking a question should not change the answer".
+*	`Command`s sollten einen Event auslösen der immer in einem `Event Store` gespeichert wird, Changelog, Nachvollziehbarkeit, vgl. `Event Sourcing`
+
+
 
 ## Dokumentation von Architekturen
 
@@ -1643,7 +1677,7 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   **Late Transaction:** für komplexe T., sammelt alle Schritte und führt diese gebündelt aus
 *   Alternative 1: Daten in lokalen Puffer speichern und in parallelem Thread schreiben
 *   Alternative 2: Offline Concurrency (Aufteilung von Transaktionen in einzelne Schritte)
-*   **Eventual Consistency**: in einem verteilten System wird ein Update auf einem Node erst nach und nach auf anderen Nodes nachgezogen
+*   **Eventual Consistency**: in einem verteilten System wird ein Update auf einem Node erst nach und nach auf anderen Nodes nachgezogen, oft ist das durchaus tolerierbar (vgl. Prozesse bevor IT eingeführt wurde), oft sind hier in Abstimmung mit Fachseite Kompromisse möglich die die technische Umsetzung erheblich erleichtern
 *   **Consistent Hashing**: Daten werden partitioniert (Sharding), jede Partition wird einem Node zugewiesen wobei jeder Node zu jeder ID befragt werden kann (verweist ggf. weiter)
 *   **Hash Node-Verfahren**: Segmentierung anhand eines Kreises, bei Ausfall eines Knotens wird nur dieses Segment neu verteilt (Ring), Ansatz eignet sich auch gut für spaltenorientierte DBs
 *   wenn der Knoten wieder verfügbar ist wird das Delta automatisch übertragen

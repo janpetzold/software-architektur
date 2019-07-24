@@ -2,7 +2,7 @@ ENGLISH: This "project" is nothing more than a document I created to save a weal
 
 # Eine (absolut subjektive) Zusammenstellung relevanter Aspekte der Software-Architektur
 
-#### Erste Version vom 04.10.2012, letztes Update am 14.08.2016
+#### Erste Version vom 04.10.2012, letztes Update am 24.07.2019
 
 In diesem Dokument sammle ich alle mir relevant erscheinenden Punkte zum Thema Software-Architektur. Es ist weder vollständig noch übermäßig gut sortiert aber inzwischen hat sich einiges gesammelt. 
 
@@ -404,19 +404,23 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   Wesentliche NFAs: Skalierbarkeit, Sicherheit, Robustheit, Verfügbarkeit, Performance, Wartbarkeit, Erweiterbarkeit, Bedienbarkeit, Kosten
 *   DIN/ISO 9126: Modell für Softwarequalität (unabhängig vom konkreten Prozeß), Inhalt:
 	*   **Funktionalität**: besitzt die Software die verlangten Funktionen (z.B. Richtigkeit, Sicherheit, Interoperabilität, Angemessenheit, Ordnungsmäßigkeit)
-	*   **Zuverlässigkeit**: kann die SW ihre Leistungen unter festgelegten Bedingungen über einen Zeitraum erhalten (z.B. Fehlertoleranz, Wiederherstellbarkeit)
-	*   **Benutzbarkeit**: leichte Bedienung/Erlernbarkeit, Reaktion auf Fehleingaben, Benutzerfreundlichkeit (Verständlichkeit, Erlernbarkeit, Bedienbarkeit)
-	*   **Effizienz**: Sparsamkeit bezüglich Ressourcen, Zeitverhalten, Speicherplatz (z.B. Zeitund Verbrauchsverhalten = Performance)
-	*   **Änderbarkeit**: Aufwand zur Fehlerbeseitigung bzw. Anpassungen (z.B. Prüfbarkeit, Modifizierbarkeit)
-	*   **Übertragbarkeit**: SW sollte auch auf anderen Hardund SW-Systemen einsetzbar sein (z.B. Installierbarkeit, Anpassbarkeit, Austauschbarkeit)
+	*   **Zuverlässigkeit**: kann die SW ihre Leistungen unter festgelegten Bedingungen über einen Zeitraum erhalten (z.B. Fehlertoleranz, Wiederherstellbarkeit), kann der Dienst auf Anfragen antworten (Resilienz)
+	*   **Benutzbarkeit**: leichte Bedienung/Erlernbarkeit, Reaktion auf Fehleingaben, Benutzerfreundlichkeit (Verständlichkeit, Erlernbarkeit, Bedienbarkeit), Qualität der UX (z.B. über Fokusgruppen oer A/B-Tests zu messen)
+	*   **Effizienz**: Sparsamkeit bezüglich Ressourcen, Zeitverhalten, Speicherplatz (z.B. Zeit- und Verbrauchsverhalten = Performance), angemessene Antwortzeiten/Latenzen, lässt sich gut über Lasttests überprüfen
+	*   **Änderbarkeit / Erweiterbarkeit**: Aufwand zur Fehlerbeseitigung bzw. Anpassungen (z.B. Prüfbarkeit, Modifizierbarkeit) auch bei sich ändernden Anforderungen und Technologiewechseln (z.B. DB), Änderung an einer Komponente zieht keine Änderungen an anderen Komponenten nach sich
+	*   **Übertragbarkeit**: SW sollte auch auf anderen Hard- und SW-Systemen einsetzbar sein (z.B. Installierbarkeit, Anpassbarkeit, Austauschbarkeit)
 *   SW-Architektur muß weiterhin leicht verständlich, nachvollziehbar, aktuell dokumentiert und korrekt implementiert sein
 *   Ergänzend bzw. im IT-Umfeld gebräuchlich:
-	*   **Skalierbarkeit**: Anpassungsfähigkeit bei zunehmenden Anforderungen (vertikal – bessere Hardwarekomponenten / horizontal – mehr Server)
-	*   **Nachvollziehbarkeit**: alle Anforderungen identifizieren und diese in allen Artefakten verfolgbar machen (Beschreibung/Spez/Implementierung)
-	*   **Performance**: wie Effizienz, bezieht sich auf Datendurchsatz, Datenbzw. Transaktionsvolumen, 	Maskenwechselzeit, Durchlauf-/Startzeit
-	*   **Portabilität / Kompatibilität**: wie Übertragbarkeit, verschiedene OS/Hardware
+	*   **Skalierbarkeit**: Anpassungsfähigkeit bei zunehmenden Anforderungen (vertikal – bessere Hardwarekomponenten / horizontal – mehr Server), typische Szenarien: mehr Nutzer, mehr Content, erhöhte Last, mehrere Kunden eines mandantenfähigen systems, mehr (Dev-)Teams die ein System nutzen
+	*   **Nachvollziehbarkeit**: Prüfung eines Systems (Beschreibung/Spez/Implementierung) hinsichtlich Recht/Sicherheit/Finanz. Hilfreich sind dabei eine versionierte Datenhaltung und unveränderliche Ereignisse.
+	*   **Performance**: wie Effizienz, bezieht sich auf Datendurchsatz, Daten- bzw. Transaktionsvolumen, 	Maskenwechselzeit, Durchlauf-/Startzeit
+	*   **Portabilität / Interoperabilität / Kompatibilität**: wie Übertragbarkeit, verschiedene OS/Hardware, freier Austausch von Informationen (z.B. offene und definierte Schnittstellen, programmiersprachenunabhängige Datenformate)
 	*   **Kosten**: Topmerkmal, besonders für das Management zentral
-	*   **Sicherheit**: eigentlich ein Hauptkriterium, Verfeinerung Zugriffsschutz, Unverfälschbarkeit, Nichtangreifbarkeit, Nichtabstreitbarkeit
+	*   **Sicherheit**: eigentlich ein Hauptkriterium, Verfeinerung Zugriffsschutz, Unverfälschbarkeit/Authentizität, Nichtangreifbarkeit, Nichtabstreitbarkeit, Vertraulichkeit, im Wesentlichen erreichbar durch Kryptografie (Verschlüsselung, Signaturen) und entsprechende Authentifizierungsverfahren (MFA, Rotation) mit entsprechenden (Penetration-)Tests
+	*   **Zuverlässigkeit**: korrektes Verhalten bei Rollback (Wiederherstellen eines zuverlässigen Zustands bei Fehlern)
+	*   **Testbarkeit**: automatisierte Tests von Komponenten bzw. einem Gesamtsystem
+	*   **Beobachtbarkeit**: sind Änderungen in einem System sichtbar und messbar (wichtig für DevOps)
+	*   **Wartbarkeit**: wie einfach kann ein System ausgeliefert, aktualisiert und betrieben werden (hilfreich hier hohe Automatisierung und auch kontrolliertes Provozieren von Fehlern/Chaos Engineering)
 *   Performance (Latenz, Durchsatz) ist meist auf ein bestimmtes System optimiert, dann ist es oft schwer skalierbar
 *   Typische Latenzen:
     *   Zugriff auf L1 Cache : 0,5ns
@@ -453,6 +457,7 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   Wiederverwendbarkeit: Komponenten/Teile des Systems sollen auch woanders funktionieren
 *   Integrierbarkeit: Unabhängige Entwicklung von Komponenten
 *   Testbarkeit: Sicherstellen der Funktionalität des Systems während und nach der Entwicklung
+*   Guter Ansatzpunkt/Gedanke für Enterprise Software (Amazon): könnte ich mein internes System auch problemlos öffentlich anbieten ohne signifikante Risiken einzugehen?
 
 ## Konstruktion – Datentypen und Schnittstellen
 

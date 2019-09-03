@@ -34,6 +34,7 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * [Software Estimation: Demystifying the black art](https://www.microsoft.com/learning/en-us/book.aspx?id=2425) von Steve McConnell
 * [Release It!](https://pragprog.com/book/mnee/release-it) von Michael T. Nygard
 * [Implementing Domain-Driven Design](https://vaughnvernon.co/?page_id=168) von Vaugh Vernon
+* [37 Things One Architect Knows About IT Transformation](https://leanpub.com/37things) von Gregor Hohpe
 
 
 ## Definition & Aufgaben von SW-Architekten
@@ -2081,6 +2082,44 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 *   Fehlermeldungen, Hilfetexte und Tooltips werden gern vergessen (Pflegeaufwand!)
 *   auch bei einsprachigen Projekten möglichst überall UTF-8-Encodierung verwenden
 *   Dynamische Informationen müssen als Teil des Workflows übersetzt werden (kein Release ohne vorhandene Übersetzung)
+
+## IT-Transformation und die Rolle des Architekten darin
+* Architekten sind keine Feuerwehrmänner (man muss mehr als 30 Minuten nachdenken können)
+* Architekten sind keine Senior Devs (mehr strategische/organisatorische Themen was nicht heißt das es wichtiger ist)
+* Architekten sind auch keine PMs und Wissenschaftler
+* KPIs für Architekten schwer zu definieren aber die Zahl der getroffenen und nicht getroffenen Entscheidungen sind ein Anfang
+* Emtscheidungen müssen sich stets auf einen Kontext beziehen und begründet sein (warum X und nicht Y), Trade-Offs eindeutig benennen und bewerten
+* Verbinde Architektur, Technische Details/Lösungen, Business und Leute in einer großen Organisation bzw. in komplexen Projekten
+* "Enterprise" hängt dabei meist an Größe: viele Abteilungen, hohe Budgets, viele parallele Projekte, viele (alte und neue) Produkte und Tools
+* "Architect Elevator": Fahre zwischen Management und Maschinenraum hin und her und vermittle bzw. erkläre. Steige aber auch aus (also sei kein Liftboy) um Dinge genau zu verstehen. Halte nicht an jedem Stockwerk aber erkläre Interessenten was du machst.
+* Seniorität eines Architekten bemisst sich in Fähigkeiten (wende Wissen an), Impact (Geschäftswert) und Führungsqualität (Mentoring aber auch Knowledge Sharing und Publikationen)
+* Idealerweise kann ein Softwaredesign reversibel sein, dann sind praktisch keine Architekturentscheidungen nötig da sich alles leicht anpassen lässt - meist bleibt das Theorie. Eine Architekturentscheidung zu treffen ist fast immer schwer.
+* Eine gute Architektur ermöglicht Flexibilität (einer der wichtigtsen Aspekte den Architektur schaffen/ermöglichen kann)
+* Organisationen / Systeme widerstehen oft Änderungen, ein Indiz dafür sind fehlende Antworten auf einfache Fragen (und stattdessen tagesfüllende Workshops)
+* Workshops ohne Agenda / vorbereitende Doku kann man meist direkt absagen
+* Wenn man sich für (regelmäßige) Architecture Reviews entscheidet so muss das vom Management gewollt/unterstützt sein - sonst wird jedes mäßige System mit "wir hatten ja keine Zeit" begründet und die Architektur bleibt letztlich zahnlos
+* schönes Gleichnis für asyncrhones Messaging ist Starbucks
+	* Queue entkoppelt Kasierer und Barista
+	* Out-of-order: nicht alle Getränke kommen in der gleichen Reihenfolge (z.B. wegen Komplexität)
+	* jede Message hat eindeutigen Identifikator (Name auf Becher)
+	* Exceptions passieren: Kunde kann nicht bezahlen, Maschine geht kaputt, falsches Getränk produziert
+	* Fehler erforderun verschiedene Reaktionen (Ignorieren, Retry, Erstattung)
+	* Two-Phase Commit keine Lösung: leichtere Fehlerbehandlung aber lange Wartezeit für alle
+	* falls die Queue zu lang wird sollte es Skalierungsmöglichkeiten geben (Kassierer wird temporär zum Barista)
+	* Kanonisches Datenmodell: klare und eindeutige, ggf. spezifische Bezeichnungen (Venti) damit klar ist um was es geht (Wird beim Kassierer geklärt, der Barista hat alle Infos die er braucht ohne nochmal nachzufragen)
+* Architektur heißt oft das Denken in Zusammenhängen (komplexer Systeme) und die Beeinflussung um ein gewünschtes Ergebnis zu Erzielen. Dabei helfen oft Diagramme.
+* tendenziell setzen "klassiche" Unternehmen oft mehr auf Konfiguration statt Code
+* das Finden einer geeigneten Abstraktion ist oft schwierig (gib mir Flexibilität aber löse das Knifflige - Beispiel: MapReduce, JDBC, WebWorker)
+* visuell getriebene Lösungen (ohne Code) haben meist Schwierigkeiten hinsichtlich Versionierung und Debugging (skalieren schlecht)
+* das Argument "never change a running system" greift nicht (mehr) da Sicherheitsupdates unvorhersehbar sind
+* Systeme müssen abgelöst werden da man sonst bald keine beherrschbare Landschaft mehr hat - die angestrebte Agilität kann faktisch nicht erreicht werden
+* ohne Automatisierung aller Systeme ist Agilität kaum erreichbar - Regel (z.B. für Releases): Wenn es schmerzt, mach es öfter
+* wenn Automatisierung nicht geht sollte es eine Self-Service-Lösung geben (können)
+* "fertige" Produkte von Drittanbietern sind vor allem dann nützlich wenn eine Eigenentwicklung keinen Geschäftswaert verspricht
+* gute Fragen für Sales-Prozesse: was war euer komplexestes Problem bei der Entwicklung, was ist euere Produktvision/Philosophie
+* viele größere Firmen führen irgendwann ein Governance für ihr Tooling ein (Standardlösung für ein Problem), reduziert Support/Onboarding-Aufwand und Lizenzkosten
+
+
 
 ## Modellgetriebene Entwicklung (MDD und DSLs)
 

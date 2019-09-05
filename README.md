@@ -2088,25 +2088,37 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * Architekten sind keine Senior Devs (mehr strategische/organisatorische Themen was nicht heißt das es wichtiger ist)
 * Architekten sind auch keine PMs und Wissenschaftler
 * KPIs für Architekten schwer zu definieren aber die Zahl der getroffenen und nicht getroffenen Entscheidungen sind ein Anfang
-* Emtscheidungen müssen sich stets auf einen Kontext beziehen und begründet sein (warum X und nicht Y), Trade-Offs eindeutig benennen und bewerten
+* Entscheidungen müssen sich stets auf einen Kontext beziehen und begründet sein (warum X und nicht Y), Trade-Offs eindeutig benennen und bewerten
 * Verbinde Architektur, Technische Details/Lösungen, Business und Leute in einer großen Organisation bzw. in komplexen Projekten
 * "Enterprise" hängt dabei meist an Größe: viele Abteilungen, hohe Budgets, viele parallele Projekte, viele (alte und neue) Produkte und Tools
 * "Architect Elevator": Fahre zwischen Management und Maschinenraum hin und her und vermittle bzw. erkläre. Steige aber auch aus (also sei kein Liftboy) um Dinge genau zu verstehen. Halte nicht an jedem Stockwerk aber erkläre Interessenten was du machst.
 * Seniorität eines Architekten bemisst sich in Fähigkeiten (wende Wissen an), Impact (Geschäftswert) und Führungsqualität (Mentoring aber auch Knowledge Sharing und Publikationen)
+* Doku ist eine wesentliche Aufgabe und hat folgende Werte
+	* Doku von Entscheidungen hilft dem Gesamtsystem / der Organisation (konsistente Entscheidungsführung, Transparenz, Einigkeit)
+	* Doku validiert das System und kann helfen Lücken / Inkonsistenzen aufzudecken
+	* Man kann nur dokumentieren was man auch verstanden hat (möglichst klar beschreiben)
+	* Onboarding für neue Kollegen leichter wenn Zugang zu einer Doku besteht
+	* Historie von Entscheidungen verstehen und einordnen können
+	* Gemeinsame Sichtweise verschiedenstern Stakeholder ermöglichen ("abholen")
+* Der Code ist nicht die Doku - er kann kein "High Level" geben, er kann wenig Kontext geben und es erfordert das alle Stakeholder Zugang haben und Code verstehen (Illusion)
+* Reden ist gut, Schreiben manchmal besser: Dokumente skalieren (Meetings nicht), funktionieren asynchron, viele Menschen lesen 2-3 mal schneller als sie zuhören, es ist auffindbar, man kann es bearbeiten/versionieren
+* gute Dokumente sind allumfassend, Slides so gut wie nie
+* Diagramme sind wichtig, gerade für Zusammenhänge und werden oft Grundlage einer Diskussion - das ist gut! Wir wollen einen iterativen Verbesserungsprozess.
+* Architektur-Diagramme brauchen eigentlich immer Linien und Pfeile wg. Zusammenhängen / Integrationen / Verhalten (reine Boxen sagen wenig aus)
 * Idealerweise kann ein Softwaredesign reversibel sein, dann sind praktisch keine Architekturentscheidungen nötig da sich alles leicht anpassen lässt - meist bleibt das Theorie. Eine Architekturentscheidung zu treffen ist fast immer schwer.
-* Eine gute Architektur ermöglicht Flexibilität (einer der wichtigtsen Aspekte den Architektur schaffen/ermöglichen kann)
+* Eine gute Architektur ermöglicht Flexibilität (einer der wichtigsten Aspekte den Architektur schaffen/ermöglichen kann)
 * Organisationen / Systeme widerstehen oft Änderungen, ein Indiz dafür sind fehlende Antworten auf einfache Fragen (und stattdessen tagesfüllende Workshops)
 * Workshops ohne Agenda / vorbereitende Doku kann man meist direkt absagen
 * Wenn man sich für (regelmäßige) Architecture Reviews entscheidet so muss das vom Management gewollt/unterstützt sein - sonst wird jedes mäßige System mit "wir hatten ja keine Zeit" begründet und die Architektur bleibt letztlich zahnlos
-* schönes Gleichnis für asyncrhones Messaging ist Starbucks
-	* Queue entkoppelt Kasierer und Barista
+* schönes Gleichnis für asynchrones Messaging ist Starbucks
+	* Queue entkoppelt Kassierer und Barista
 	* Out-of-order: nicht alle Getränke kommen in der gleichen Reihenfolge (z.B. wegen Komplexität)
-	* jede Message hat eindeutigen Identifikator (Name auf Becher)
-	* Exceptions passieren: Kunde kann nicht bezahlen, Maschine geht kaputt, falsches Getränk produziert
-	* Fehler erforderun verschiedene Reaktionen (Ignorieren, Retry, Erstattung)
+	* jede Message hat eindeutigen Identifikator (Name auf Becher), manchmal geht das schief (Name falsch/nicht erkannt)
+	* andere Exceptions passieren: Kunde kann nicht bezahlen, Maschine geht kaputt, falsches Getränk produziert
+	* Fehler erfordern verschiedene Reaktionen (Ignorieren, Retry, Erstattung)
 	* Two-Phase Commit keine Lösung: leichtere Fehlerbehandlung aber lange Wartezeit für alle
 	* falls die Queue zu lang wird sollte es Skalierungsmöglichkeiten geben (Kassierer wird temporär zum Barista)
-	* Kanonisches Datenmodell: klare und eindeutige, ggf. spezifische Bezeichnungen (Venti) damit klar ist um was es geht (Wird beim Kassierer geklärt, der Barista hat alle Infos die er braucht ohne nochmal nachzufragen)
+	* Kanonisches Datenmodell: klare und eindeutige, ggf. spezifische Bezeichnungen (Venti) damit klar ist um was es geht (wird beim Kassierer geklärt, der Barista hat alle Infos die er braucht ohne nochmal nachzufragen)
 * Architektur heißt oft das Denken in Zusammenhängen (komplexer Systeme) und die Beeinflussung um ein gewünschtes Ergebnis zu Erzielen. Dabei helfen oft Diagramme.
 * tendenziell setzen "klassiche" Unternehmen oft mehr auf Konfiguration statt Code
 * das Finden einer geeigneten Abstraktion ist oft schwierig (gib mir Flexibilität aber löse das Knifflige - Beispiel: MapReduce, JDBC, WebWorker)
@@ -2115,9 +2127,16 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * Systeme müssen abgelöst werden da man sonst bald keine beherrschbare Landschaft mehr hat - die angestrebte Agilität kann faktisch nicht erreicht werden
 * ohne Automatisierung aller Systeme ist Agilität kaum erreichbar - Regel (z.B. für Releases): Wenn es schmerzt, mach es öfter
 * wenn Automatisierung nicht geht sollte es eine Self-Service-Lösung geben (können)
-* "fertige" Produkte von Drittanbietern sind vor allem dann nützlich wenn eine Eigenentwicklung keinen Geschäftswaert verspricht
+* Automatisierung steigert nicht immer die Effizienz, aber immer die Sicherheit bzw. das Vertrauen darin das Systeme und Abläufe funktionieren
+* Infrastruktur muss somit softwaredefiniert sein, ein Wert "der Server läuft seit zwei Jahren" ist keiner wenn niemand ihn wieder korrekt aufsetzen kann (Gegenbeispiel: Router kann nur über UI konfiguriert werden)
+* "fertige" Produkte von Drittanbietern sind vor allem dann nützlich wenn eine Eigenentwicklung keinen Geschäftswert verspricht
 * gute Fragen für Sales-Prozesse: was war euer komplexestes Problem bei der Entwicklung, was ist euere Produktvision/Philosophie
 * viele größere Firmen führen irgendwann ein Governance für ihr Tooling ein (Standardlösung für ein Problem), reduziert Support/Onboarding-Aufwand und Lizenzkosten
+* Kontrolle in einer Organisation am ehesten durch Enablement (Self-service-Dienste, Einkauf, Dokumentation, Kontakte), Autonomie (Lass die Teams machen, kurze Feedback-Zyklen), Druck (klare Ziele/KPIs)
+* Prozesse lassen sich in vielen Konzernen durch einen "Schwarzmarkt" verkürzen - man kennt jemanden, es gibt einen undokumentierten Weg etc.
+* Begründung: Es gäbe Chaos wenn wir nicht Prozess X hätten (vermutlich würde eher alles besser laufen)
+* So ein Markt steht Neulingen kaum zur verfügung, erfordert ein gutes Netzwerk und ist nie effizient (Analogie Regierungen/Länder), es gibt keinen Feedback-Zyklus und man kann ihn nicht outsourcen (stattdessen manifestiert sich darin ein mittleres Management)
+* oft keine böse Absicht - Menschen umgehen Prozesse damit sie ihre Arbeit machen können / Gegenbeispiel: ein offfener Markt der Menschen erlaubt ihre Themen zu tun und sie dabei unterstützt statt zu behindern
 
 
 

@@ -2137,6 +2137,15 @@ Neben eigenen Praxiserfahrungen sind meine wesentlichen Quellen folgende:
 * Begründung: Es gäbe Chaos wenn wir nicht Prozess X hätten (vermutlich würde eher alles besser laufen)
 * So ein Markt steht Neulingen kaum zur verfügung, erfordert ein gutes Netzwerk und ist nie effizient (Analogie Regierungen/Länder), es gibt keinen Feedback-Zyklus und man kann ihn nicht outsourcen (stattdessen manifestiert sich darin ein mittleres Management)
 * oft keine böse Absicht - Menschen umgehen Prozesse damit sie ihre Arbeit machen können / Gegenbeispiel: ein offfener Markt der Menschen erlaubt ihre Themen zu tun und sie dabei unterstützt statt zu behindern
+* Firmen wie Google haben oft keine explizite Governance aber geben dennoch Standards vor - Beispiel: Devs arbeiten mit irgendeinem Editor / IDE aber es gibt nur ein OS in Produktion und nur einen Weg nach Prod zu deployen
+* Standards entiwckeln sich am besten organisch - Beispiel: Flüchtlingslager in Westsahara gibt es nur Land Rover oder Mercedes-Limousinen (weil sie dort gut funktionieren, es Teile gibt etc.) - viele Firmen in der IT sind zu "reich" und erlauben sich auch daher eine höhere Vielfalt
+* Change sieht oft so aus: Firma gründet coole Tochter (dort gibt es Macs, Admin-Rechte, Hoodies und schickes Gebäude), die Mas der Tochterfirma bleiben aber in ihrer Blase und haben beschränkte Entwicklungsmöglichkeiten, früher oder später gibt es Firmen wo der Konzern so tickt wie die coole Tochter also gehen sie dort hin (Konzern bleibt wie er ist, Tochter und Konzern haben sich zu weit von einander entfernt)
+* Was besser funktionieren kann: kleinere Leuchtturm-Projekte als Parallelentwicklung zur großen Konzernstrategie (fehler sind nicht so teuer aber ggf. schafft man ein echtes Einhorn)
+* Generell schlägt schnell groß (Non-IT-Beispiel: Zara produziert größtenteils in Europa, liefert dadurch viel schneller neue Kollektionen als andere die in Asien produzieren) - daher IT als Self-Service und automatisiert
+* Change kann man schlecht kaufen - gute Leute verdienen viel aber suchen sich eher Umgebungen wo sie auch von anderen lernen können. Söldner dagegen gehen bei der erstbesten Gelegenheit.
+* Generell sollte IT mehr Pull als Push sein (Nachfrage befriedigen statt Produkte verordnen)
+* Konzerne haben allein schon viel Potenzial in den eigenen Mitarbeitern welche Neuentwicklungen selbst testen könn(t)en
+* HPPO: Highest paid persons opinion
 
 
 

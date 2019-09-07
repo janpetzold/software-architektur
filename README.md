@@ -2,7 +2,7 @@ ENGLISH: This "project" is nothing more than a document I created to save a weal
 
 # Eine (absolut subjektive) Zusammenstellung relevanter Aspekte der Software-Architektur
 
-#### Erste Version vom 04.10.2012, letztes Update am 24.07.2019
+#### Erste Version vom 04.10.2012, letztes Update am 07.09.2019
 
 In diesem Dokument sammle ich alle mir relevant erscheinenden Punkte zum Thema Software-Architektur. Es ist weder vollständig noch übermäßig gut sortiert aber inzwischen hat sich einiges gesammelt. 
 
